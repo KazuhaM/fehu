@@ -34,8 +34,21 @@ enum {
 
 enum custom_keycodes {
       //diphthong codes for JP
-  AZIK_K= SAFE_RANGE,
+  AZIK_N= SAFE_RANGE,
+  AZIK_K,
   AZIK_T,
+  AZIK_S,
+  AZIK_Y,
+  AZIK_W,
+  AZIK_M,
+  AZIK_R,
+  AZIK_H,
+  AZIK_G,
+  AZIK_D,
+  AZIK_Z,
+  AZIK_F,
+  AZIK_J,
+  AZIK_B,
 
   DI_UU,
   DI_AI,
@@ -139,8 +152,21 @@ enum custom_keycodes {
 #define KC_IJP IM_JP
 
 // AZIK keys
+#define KC_AZN AZIK_N
 #define KC_AZK AZIK_K
 #define KC_AZT AZIK_T
+#define KC_AZS AZIK_S
+#define KC_AZY AZIK_Y
+#define KC_AZW AZIK_W
+#define KC_AZM AZIK_M
+#define KC_AZR AZIK_R
+#define KC_AZH AZIK_H
+#define KC_AZG AZIK_G
+#define KC_AZD AZIK_D
+#define KC_AZZ AZIK_Z
+#define KC_AZF AZIK_F
+#define KC_AZJ AZIK_J
+#define KC_AZB AZIK_B
 
 //diphthong
 #define KC_DUU DI_UU
@@ -242,9 +268,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
      ESC , F2 , F3 , F4 , F5 , F6                , F7 , F8 , F9 , F10, F11, F12,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-      ___,COMM, H  , R  , M  , W                 , DUU, DAI, DOU, DOT, DEI, BLALT,
+      ___,COMM, AZH, AZR, AZM, AZW               , DUU, DAI, DOU, DOT, DEI, BLALT,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-    BLGUI, Y  , S  , AZT, AZK, N                 , U  , A  , O  , I  , E  ,MINS,
+    BLGUI, AZY, AZS, AZT, AZK, AZN               , U  , A  , O  , I  , E  ,MINS,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
       ___, P  , L  ,DTSU, DWO, DEL               ,BSPC, DAU, DOI, DII, DEA, ___,
   //`----+----+----+----+----+----+----/    \----+----+----+----+----+----+----'
@@ -257,11 +283,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
      ___ , ___, ___, ___, ___, ___               , ___, ___, ___, ___, F23, F24,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-     ___ ,SCLN, ___, J  , F  , Q                 , DUI, DAA, DOO,COLN, DIU, ___,
+     ___ ,SCLN, ___, AZJ, AZF, Q                 , DUI, DAA, DOO,COLN, DIU, ___,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-     ___ , ___, Z  , D  , G  , DNN               ,DUNN,DANN,DONN,DINN,DENN,SLSH,
+     ___ , ___, AZZ, AZD, AZG, DNN               ,DUNN,DANN,DONN,DINN,DENN,SLSH,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
-     ___ , B  , V  , P  , B  , ___               ,___ , DAE, DOA, DIA, DIO, ___,
+     ___ , AZB, V  , P  , AZB, ___               ,___ , DAE, DOA, DIA, DIO, ___,
   //`----+----+----+----+----+----+----/    \----+----+----+----+----+----+----'
      ___ ,LALT, ___, ___,___ , ___               ,___ ,CHIME, ___, ___, ___, ___
   //                  `----+----+----'        `----+----+----'
@@ -478,15 +504,27 @@ uint16_t pre_pressed_key;
 // int os_state_led = 190 ;
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case AZIK_T:
+  case AZIK_N:
       if (record->event.pressed) {
         switch (pre_pressed_key){
-          case AZIK_K:
-            SEND_STRING("oto");
+          case AZIK_T:
+            SEND_STRING("une");
+            pre_pressed_key = 0;
+            break;
+          case AZIK_Y:
+            SEND_STRING("ouna");
+            pre_pressed_key = 0;
+            break;
+          case AZIK_M:
+            SEND_STRING("ono");
+            pre_pressed_key = 0;
+            break;
+          case AZIK_N:
+            SEND_STRING("n");
             pre_pressed_key = 0;
             break;
           default:
-            tap_code (KC_T);
+            tap_code (KC_N);
             pre_pressed_key = keycode;
             break;
         }
@@ -500,8 +538,295 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             SEND_STRING("oka");
             pre_pressed_key = 0;
             break;
+          case AZIK_S:
+            SEND_STRING("oko");
+            pre_pressed_key = 0;
+            break;
+          case AZIK_Y:
+            SEND_STRING("oku");
+            pre_pressed_key = 0;
+            break;
+          case AZIK_R:
+            SEND_STRING("aku");
+            pre_pressed_key = 0;
+            break;
           default:
             tap_code (KC_K);
+            pre_pressed_key = keycode;
+            break;
+        }
+      }
+      return false;
+      break;
+    case AZIK_T:
+      if (record->event.pressed) {
+        switch (pre_pressed_key){
+          case AZIK_N:
+            SEND_STRING("iti");
+            pre_pressed_key = 0;
+            break;
+          case AZIK_K:
+            SEND_STRING("oto");
+            pre_pressed_key = 0;
+            break;
+          case AZIK_S:
+            SEND_STRING("ita");
+            pre_pressed_key = 0;
+            break;
+          case AZIK_W:
+            SEND_STRING("ata");
+            pre_pressed_key = 0;
+            break;
+          case AZIK_M:
+            SEND_STRING("ata");
+            pre_pressed_key = 0;
+            break;
+          case AZIK_H:
+            SEND_STRING("ito");
+            pre_pressed_key = 0;
+            break;
+          case AZIK_G:
+            SEND_STRING("oto");
+            pre_pressed_key = 0;
+            break;
+          case AZIK_D:
+            SEND_STRING("ati");
+            pre_pressed_key = 0;
+            break;
+          case AZIK_B:
+            SEND_STRING("ito");
+            pre_pressed_key = 0;
+            break;
+          default:
+            tap_code (KC_T);
+            pre_pressed_key = keycode;
+            break;
+        }
+      }
+      return false;
+      break;
+    case AZIK_S:
+      if (record->event.pressed) {
+        switch (pre_pressed_key){
+          case AZIK_N:
+            SEND_STRING("asi");
+            pre_pressed_key = 0;
+            break;
+          case AZIK_K:
+            SEND_STRING("oso");
+            pre_pressed_key = 0;
+            break;
+          case AZIK_T:
+            SEND_STRING("osi");
+            pre_pressed_key = 0;
+            break;
+          case AZIK_Y:
+            SEND_STRING("osi");
+            pre_pressed_key = 0;
+            break;
+          case AZIK_M:
+            SEND_STRING("asu");
+            pre_pressed_key = 0;
+            break;
+          case AZIK_R:
+            SEND_STRING("asi");
+            pre_pressed_key = 0;
+            break;
+          case AZIK_D:
+            SEND_STRING("esu");
+            pre_pressed_key = 0;
+            break;
+          default:
+            tap_code (KC_S);
+            pre_pressed_key = keycode;
+            break;
+        }
+      }
+      return false;
+      break;
+    case AZIK_Y:
+      if (record->event.pressed) {
+        tap_code (KC_Y);
+        pre_pressed_key = keycode;
+      }
+      return false;
+      break;
+    case AZIK_W:
+      if (record->event.pressed) {
+        tap_code (KC_W);
+        pre_pressed_key = keycode;
+      }
+      return false;
+      break;
+    case AZIK_M:
+      if (record->event.pressed) {
+        switch (pre_pressed_key){
+          case AZIK_K:
+            SEND_STRING("amo");
+            pre_pressed_key = 0;
+            break;
+          case AZIK_T:
+            SEND_STRING("ame");
+            pre_pressed_key = 0;
+            break;
+          case AZIK_S:
+            SEND_STRING("omo");
+            pre_pressed_key = 0;
+            break;
+          case AZIK_D:
+            SEND_STRING("emo");
+            pre_pressed_key = 0;
+            break;
+          default:
+            tap_code (KC_M);
+            pre_pressed_key = keycode;
+            break;
+        }
+      }
+      return false;
+      break;
+    case AZIK_R:
+      if (record->event.pressed) {
+        switch (pre_pressed_key){
+          case AZIK_N:
+            SEND_STRING("aru");
+            pre_pressed_key = 0;
+            break;
+          case AZIK_K:
+            SEND_STRING("ara");
+            pre_pressed_key = 0;
+            break;
+          case AZIK_T:
+            SEND_STRING("ara");
+            pre_pressed_key = 0;
+            break;
+          case AZIK_S:
+            SEND_STRING("uru");
+            pre_pressed_key = 0;
+            break;
+          case AZIK_Y:
+            SEND_STRING("oru");
+            pre_pressed_key = 0;
+            break;
+          case AZIK_W:
+            SEND_STRING("are");
+            pre_pressed_key = 0;
+            break;
+          case AZIK_H:
+            SEND_STRING("iru");
+            pre_pressed_key = 0;
+            break;
+          case AZIK_G:
+            SEND_STRING("ara");
+            pre_pressed_key = 0;
+            break;
+          case AZIK_D:
+            SEND_STRING("earu");
+            pre_pressed_key = 0;
+            break;
+          case AZIK_Z:
+            SEND_STRING("aru");
+            pre_pressed_key = 0;
+            break;
+          case AZIK_F:
+            SEND_STRING("uru");
+            pre_pressed_key = 0;
+            break;
+          default:
+            tap_code (KC_R);
+            pre_pressed_key = keycode;
+            break;
+        }
+      }
+      return false;
+      break;
+    case AZIK_H:
+      if (record->event.pressed) {
+        switch (pre_pressed_key){
+          case AZIK_D:
+            SEND_STRING("eha");
+            pre_pressed_key = 0;
+            break;
+          case AZIK_T:
+            SEND_STRING("oha");
+            pre_pressed_key = 0;
+            break;
+          default:
+            tap_code (KC_H);
+            pre_pressed_key = keycode;
+            break;
+        }
+      }
+      return false;
+      break;
+    case AZIK_G:
+      if (record->event.pressed) {
+        tap_code (KC_G);
+        pre_pressed_key = keycode;
+      }
+      return false;
+      break;
+    case AZIK_D:
+      if (record->event.pressed) {
+        switch (pre_pressed_key){
+          case AZIK_K:
+            SEND_STRING("edo");
+            pre_pressed_key = 0;
+            break;
+          case AZIK_N:
+            SEND_STRING("ode");
+            pre_pressed_key = 0;
+            break;
+          default:
+            tap_code (KC_D);
+            pre_pressed_key = keycode;
+            break;
+        }
+      }
+      return false;
+      break;
+    case AZIK_Z:
+      if (record->event.pressed) {
+        tap_code (KC_Z);
+        pre_pressed_key = keycode;
+      }
+      return false;
+      break;
+    case AZIK_F:
+      if (record->event.pressed) {
+        tap_code (KC_F);
+        pre_pressed_key = keycode;
+      }
+      return false;
+      break;
+    case AZIK_J:
+      if (record->event.pressed) {
+        switch (pre_pressed_key){
+          case AZIK_F:
+            SEND_STRING("uji");
+            pre_pressed_key = 0;
+            break;
+          default:
+            tap_code (KC_J);
+            pre_pressed_key = keycode;
+            break;
+        }
+      }
+      return false;
+      break;
+    case AZIK_B:
+      if (record->event.pressed) {
+        switch (pre_pressed_key){
+          case AZIK_N:
+            SEND_STRING("eba");
+            pre_pressed_key = 0;
+            break;
+          case AZIK_T:
+            SEND_STRING("abi");
+            pre_pressed_key = 0;
+            break;
+          default:
+            tap_code (KC_B);
             pre_pressed_key = keycode;
             break;
         }
@@ -513,6 +838,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         // when keycode DI_UU is pressed
         SEND_STRING("uu");
+        pre_pressed_key = keycode;
       }
       return false;
       break;
@@ -520,6 +846,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         // when keycode DI_AI is pressed
         SEND_STRING("ai");
+        pre_pressed_key = keycode;
       }
       return false;
       break;
@@ -527,6 +854,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         // when keycode DI_OU is pressed
         SEND_STRING("ou");
+        pre_pressed_key = keycode;
       }
       return false;
       break;
@@ -534,6 +862,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         // when keycode DI_EI is pressed
         SEND_STRING("ei");
+        pre_pressed_key = keycode;
       }
       return false;
       break;
@@ -541,6 +870,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         // when keycode DI_UI is pressed
         SEND_STRING("ui");
+        pre_pressed_key = keycode;
       }
       return false;
       break;
@@ -548,6 +878,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         // when keycode DI_AU is pressed
         SEND_STRING("au");
+        pre_pressed_key = keycode;
       }
       return false;
       break;
@@ -555,6 +886,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         // when keycode DI_OI is pressed
         SEND_STRING("oi");
+        pre_pressed_key = keycode;
       }
       return false;
       break;
@@ -562,12 +894,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         // when keycode DI_IU is pressed
         SEND_STRING("iu");
+        pre_pressed_key = keycode;
       }
       return false;
     case DI_AE:
       if (record->event.pressed) {
         // when keycode DI_AE is pressed
         SEND_STRING("ae");
+        pre_pressed_key = keycode;
       }
       return false;
       break;
@@ -575,6 +909,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         // when keycode DI_AA is pressed
         SEND_STRING("aa");
+        pre_pressed_key = keycode;
       }
       return false;
       break;
@@ -582,6 +917,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         // when keycode DI_OA is pressed
         SEND_STRING("oa");
+        pre_pressed_key = keycode;
       }
       return false;
       break;
@@ -589,6 +925,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         // when keycode DI_OO is pressed
         SEND_STRING("oo");
+        pre_pressed_key = keycode;
       }
       return false;
       break;
@@ -596,6 +933,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         // when keycode DI_IA is pressed
         SEND_STRING("ia");
+        pre_pressed_key = keycode;
       }
       return false;
       break;
@@ -603,6 +941,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         // when keycode DI_II is pressed
         SEND_STRING("ii");
+        pre_pressed_key = keycode;
       }
       return false;
       break;
@@ -610,6 +949,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         // when keycode DI_IU is pressed
         SEND_STRING("ea");
+        pre_pressed_key = keycode;
       }
       return false;
       break;
@@ -617,6 +957,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         // when keycode DI_IO is pressed
         SEND_STRING("io");
+        pre_pressed_key = keycode;
       }
       return false;
       break;
@@ -625,6 +966,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         // when keycode DI_UNN is pressed
         SEND_STRING("unn");
+        pre_pressed_key = keycode;
       }
       return false;
       break;
@@ -632,6 +974,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         // when keycode DI_ANN is pressed
         SEND_STRING("ann");
+        pre_pressed_key = keycode;
       }
       return false;
       break;
@@ -639,6 +982,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         // when keycode DI_ONN is pressed
         SEND_STRING("onn");
+        pre_pressed_key = keycode;
       }
       return false;
       break;
@@ -646,6 +990,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         // when keycode DI_INN is pressed
         SEND_STRING("inn");
+        pre_pressed_key = keycode;
       }
       return false;
       break;
@@ -653,6 +998,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         // when keycode DI_ENN is pressed
         SEND_STRING("enn");
+        pre_pressed_key = keycode;
       }
       return false;
       break;
@@ -660,6 +1006,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         // when keycode DI_WO is pressed
         SEND_STRING("wo");
+        pre_pressed_key = keycode;
       }
       return false;
       break;
@@ -667,6 +1014,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         // when keycode DI_TSU is pressed
         SEND_STRING("ltsu");
+        pre_pressed_key = keycode;
       }
       return false;
       break;
@@ -674,6 +1022,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         // when keycode DN_NN is pressed
         SEND_STRING("nn");
+        pre_pressed_key = keycode;
       }
       return false;
       break;
@@ -705,6 +1054,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         // when keycode DM_SSTT is pressed
         SEND_STRING("<-");
+        pre_pressed_key = keycode;
       }
       return false;
       break;
@@ -712,6 +1062,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case DF_RNMSH:
       if (record->event.pressed) {
         // when keycode DF_RNMSH is pressed
+        pre_pressed_key = keycode;
         SEND_STRING(SS_LALT("ohr"));
       }
       return false;
@@ -719,6 +1070,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       case DF_WOXSET:
       if (record->event.pressed) {
         // when keycode DF_WOXSET is pressed
+        pre_pressed_key = keycode;
         SEND_STRING(SS_LALT("s"));
       }else{
         SEND_STRING(SS_TAP(X_ENTER));
@@ -728,6 +1080,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case DF_WOXML:
       if (record->event.pressed) {
         // when keycode DF_WOXMLis pressed
+        pre_pressed_key = keycode;
         SEND_STRING(SS_LALT("m"));
       }else{
         SEND_STRING(SS_TAP(X_ENTER));
@@ -737,6 +1090,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case DF_WOXGMSC:
       if (record->event.pressed) {
         // when keycode DF_WOXGMSC is pressed
+        pre_pressed_key = keycode;
         SEND_STRING(SS_LALT("g"));
       }else{
         SEND_STRING(SS_TAP(X_ENTER));
@@ -746,6 +1100,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case DF_WOXPASS:
       if (record->event.pressed) {
         // when keycode DF_WOXPASS is pressed
+        pre_pressed_key = keycode;
         SEND_STRING(SS_LALT("p"));
       }else{
         SEND_STRING(SS_TAP(X_ENTER));
@@ -770,6 +1125,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           layer_clear();
           layer_on(0);
           layer_off(2);
+          pre_pressed_key = keycode;
         }else{
           // when keycode IM_EN is pressed
           persistent_default_layer_set(1UL<< 0) ;
@@ -777,6 +1133,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           layer_clear();
           layer_on(0);
           layer_off(2);
+          pre_pressed_key = keycode;
         }
       }
       return false;
@@ -789,6 +1146,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           layer_clear();
           layer_on(2);
           layer_off(0);
+          pre_pressed_key = keycode;
         }else{
           // when keycode IM_JP is pressed
           //SEND_STRING(SS_TAP(X_LANG5));
@@ -797,6 +1155,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           layer_clear();
           layer_on(2);
           layer_off(0);
+          pre_pressed_key = keycode;
         }
       }
       return false;
@@ -806,9 +1165,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         // when keycode DF_RNMSH is pressed
         layer_off(5);
         layer_on(4);
+        pre_pressed_key = keycode;
       }else{
         layer_off(4);
         layer_on(5);
+        pre_pressed_key = keycode;
       }
       return false;
       break;
@@ -821,6 +1182,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           layer_clear();
           layer_on(0);
           layer_off(2);
+          pre_pressed_key = keycode;
         }
         register_code (KC_LCTL);
         register_code (KC_LALT);
@@ -828,6 +1190,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         unregister_code (KC_G);
         unregister_code (KC_LALT);
         unregister_code (KC_LCTL);
+        pre_pressed_key = keycode;
       }
       return false;
       break;
@@ -837,6 +1200,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         unregister_code (KC_LCTL);
         register_code (KC_LCTL);
         unregister_code (KC_LCTL);
+        pre_pressed_key = keycode;
       }
       return false;
       break;
@@ -846,6 +1210,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         register_code (KC_LCTL);
         register_code (KC_F13);
         unregister_code (KC_F13);
+        pre_pressed_key = keycode;
       }else{
         unregister_code (KC_LCTL);
       }
@@ -857,6 +1222,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         register_code (KC_LCTL);
         register_code (KC_F14);
         unregister_code (KC_F14);
+        pre_pressed_key = keycode;
       }else{
         unregister_code (KC_LCTL);
       }
@@ -866,12 +1232,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (OS_State_mode){
         if (record->event.pressed) {
           layer_on(8);
+          pre_pressed_key = keycode;
         }else{
           layer_off(8);
         }
       }else{
         if (record->event.pressed) {
           layer_on(6);
+          pre_pressed_key = keycode;
         }else{
           layer_off(6);
         }
@@ -882,12 +1250,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (OS_State_mode){
         if (record->event.pressed) {
           layer_on(9);
+          pre_pressed_key = keycode;
         }else{
           layer_off(9);
         }
       }else{
         if (record->event.pressed) {
           layer_on(7);
+          pre_pressed_key = keycode;
         }else{
           layer_off(7);
         }
@@ -902,6 +1272,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           layer_on(0);
 
           register_code (KC_LCTL);
+          pre_pressed_key = keycode;
         }else{
           unregister_code (KC_LCTL);
 
@@ -918,6 +1289,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           layer_on(0);
 
           register_code (KC_LALT);
+          pre_pressed_key = keycode;
         }else{
           unregister_code (KC_LALT);
           
@@ -934,6 +1306,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           layer_on(0);
 
           register_code (KC_LGUI);
+          pre_pressed_key = keycode;
         }else{
           unregister_code (KC_LGUI);
           
@@ -942,6 +1315,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           layer_on(2);
         }
       return false;
+      break;
+    case KC_SJP:
       break;
     default:
       pre_pressed_key = keycode;
