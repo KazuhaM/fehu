@@ -1,15 +1,20 @@
 //#include QMK_KEYBOARD_H
 //#include <stdio.h>
-#include "fuhe.h"
+#include "fehu.h"
 
 #define L_MDVORAK 0
 #define L_SMDVORAK 2
-#define L_MSKYTOUCH 4
-#define L_SMSKYTOUCH 8
-#define L_MARK 16
-#define L_NUM 32
-#define L_FUNC 64
-#define L_SFUNC 128
+#define L_NIT 4
+#define L_NITL 8
+#define L_NITR 16
+#define L_NITB 32
+#define L_MARK 64
+#define L_NUM 128
+#define L_FUNC 256
+#define L_SFUNC 512
+#define L_FUNCA 1024
+#define L_SFUNCA 2048
+#define L_QWERTY 4096
 
 //char layer_state_str2[85];
 const char *read_layer_state2(bool OS_State) {
@@ -93,14 +98,28 @@ if (OS_State) {
     logo[61] = 0xd2;
   }
 //Japanese and Shift Japanese Layer
-  if ((layer_state / L_MSKYTOUCH) % 2 == 1) {
-    if ((layer_state / L_SMSKYTOUCH) % 2 == 1) {
+  if ((layer_state / L_NIT) % 2 == 1) {
+    if ((layer_state / L_NITB) % 2 == 1) {
       logo[16] = 0x97;  //rune up right
       logo[17] = 0x98;  //rune down right
       logo[37] = 0xb7;  //rune up left
       logo[38] = 0xb8;  //rune down left
-      logo[58] = 0x8f;  //rune up shift
-      logo[59] = 0x90;  //rune down right
+      logo[58] = 0xdb;  //rune up shift 9b
+      logo[59] = 0xdc;  //rune down right 9c
+    }else if ((layer_state / L_NITL) % 2 == 1) {
+      logo[16] = 0x97;
+      logo[17] = 0x98;
+      logo[37] = 0xb7;
+      logo[38] = 0xb8;
+      logo[58] = 0x9b;
+      logo[59] = 0x9c;
+    }else if ((layer_state / L_NITR) % 2 == 1) {
+      logo[16] = 0x97;
+      logo[17] = 0x98;
+      logo[37] = 0xb7;
+      logo[38] = 0xb8;
+      logo[58] = 0xbb;
+      logo[59] = 0xbc;
     }else{
       logo[16] = 0x97;
       logo[17] = 0x98;
@@ -109,13 +128,6 @@ if (OS_State) {
       logo[58] = 0xd1;
       logo[59] = 0xd2;
     }
-  }else if ((layer_state / L_SMSKYTOUCH) % 2 == 1) {
-    logo[16] = 0x97;
-    logo[17] = 0x98;
-    logo[37] = 0xb7;
-    logo[38] = 0xb8;
-    logo[58] = 0x8f;
-    logo[59] = 0x90;
   }else{
     logo[16] = 0xd1;
     logo[17] = 0xd2;
@@ -157,8 +169,8 @@ if (OS_State) {
     logo[55] = 0xd2;
   }
 //Func and Shift Func Layer
-  if ((layer_state / L_FUNC) % 2 == 1) {
-    if ((layer_state / L_SFUNC) % 2 == 1) {
+  if ((layer_state / L_FUNC) % 2 == 1 || (layer_state / L_FUNCA) % 2 == 1 ) {
+    if ((layer_state / L_SFUNC) % 2 == 1 || (layer_state / L_SFUNCA) % 2 == 1 ) {
       logo[10] = 0x91;  //rune up right
       logo[11] = 0x92;  //rune down right
       logo[31] = 0xb1;  //rune up left
@@ -173,7 +185,7 @@ if (OS_State) {
       logo[52] = 0xd1;
       logo[53] = 0xd2;
     }
-  }else if ((layer_state / L_SFUNC) % 2 == 1) {
+  }else if ((layer_state / L_SFUNC) % 2 == 1 || (layer_state / L_SFUNCA) % 2 == 1 ) {
       logo[10] = 0x91;  //rune up right
       logo[11] = 0x92;  //rune down right
       logo[31] = 0xb1;  //rune up left

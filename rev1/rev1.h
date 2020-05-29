@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../fuhe.h"
+#include "../fehu.h"
 
 //void promicro_bootloader_jmp(bool program);
 #include "quantum.h"

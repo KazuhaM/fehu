@@ -73,4 +73,4 @@ SLEEP_LED_ENABLE = no    # Breathing sleep LED during USB suspend
 
 CUSTOM_MATRIX = yes
 
-DEFAULT_FOLDER = fuhe/rev1
+DEFAULT_FOLDER = fehu/rev1

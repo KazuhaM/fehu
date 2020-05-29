@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "fuhe.h"
+#include "fehu.h"
 
 char mode_icon[24];
 

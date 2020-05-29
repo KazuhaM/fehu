@@ -1,4 +1,4 @@
-#include "fuhe.h"
+#include "fehu.h"
 
 
 #ifdef AUDIO_ENABLE

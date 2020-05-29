@@ -1,4 +1,4 @@
-#include "fuhe.h"
+#include "fehu.h"
 
 const char *read_logo(void) {
   static char logo[] = {

@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "fuhe.h"
+#include "fehu.h"
 
 char timelog_str[24] = {};
 int last_time = 0;

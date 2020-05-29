@@ -119,28 +119,33 @@ enum custom_keycodes {
 //layer shorthands
 #define _MDVORAK 0
 #define _SMDVORAK 1
-#define _MSKYTOUCH 2
-#define _SMSKYTOUCH 3
-#define _MARK 4
-#define _NUM 5
-#define _FUNC 6
-#define _SFUNC 7
-#define _FUNCA 8
-#define _SFUNCA 9
-#define _QWERTY 10
+#define _NIT 2
+#define _NITL 3
+#define _NITR 4
+#define _NITB 5
+#define _MARK 6
+#define _NUM 7
+#define _FUNC 8
+#define _SFUNC 9
+#define _FUNCA 10
+#define _SFUNCA 11
+#define _QWERTY 12
 
 #define KC____ KC_TRNS
 
 //layer change
 #define KC_SEN LT(1,KC_SPC)
-#define KC_SJP LT(3,KC_SPC)
-#define KC_MRK TT(4)
-#define KC_NUM TT(5)
+#define KC_SJPL LT(3,KC_SPC)
+#define KC_SJPR LT(4,KC_ENT)
+#define KC_SJPBL LT(5,KC_SPC)
+#define KC_SJPBR LT(5,KC_ENT)
+#define KC_MRK TT(6)
+#define KC_NUM TT(7)
 // #define KC_FNC MO(6)
 // #define KC_SF MO(7)
 #define KC_NTM CL_NTM
 #define KC_CFN CL_FN
-#define QWTY TO(10)
+#define QWTY TO(12)
 #define KC_BLCTL LMD_LCTL
 #define KC_BLALT LMD_LALT
 #define KC_BLGUI LMD_LGUI
@@ -264,7 +269,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   //Japanese base keymap based on sky touch
-    [_MSKYTOUCH] = LAYOUT_kc(
+    [_NIT] = LAYOUT_kc(
   //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
      ESC , F2 , F3 , F4 , F5 , F6                , F7 , F8 , F9 , F10, F11, F12,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
@@ -274,12 +279,42 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
       ___, P  , L  ,DTSU, DWO, DEL               ,BSPC, DAU, DOI, DII, DEA, ___,
   //`----+----+----+----+----+----+----/    \----+----+----+----+----+----+----'
-      SJP, CFN, BLCTL, ___, IEN, ___               , ___, IJP, ___, ___, ___, ___
+     SJPL, CFN, BLCTL, ___, IEN, ___               , ___, IJP, ___, ___, ___,SJPR
   //                  `----+----+----'        `----+----+----'
   ),
   
   //shifted Japanese keymap
-    [_SMSKYTOUCH] = LAYOUT_kc(
+    [_NITL] = LAYOUT_kc(
+  //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
+     ___ , ___, ___, ___, ___, ___               , ___, ___, ___, ___, F23, F24,
+  //|----+----+----+----+----+----|              |----+----+----+----+----+----|
+     ___ ,SCLN, ___, AZJ, AZF, Q                 , ___, ___, ___, ___, ___, ___,
+  //|----+----+----+----+----+----|              |----+----+----+----+----+----|
+     ___ , ___, AZZ, AZD, AZG, DNN               , ___, ___, ___, ___, ___, ___,
+  //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
+     ___ , AZB, V  , P  , AZB, ___               , ___, ___, ___, ___, ___, ___,
+  //`----+----+----+----+----+----+----/    \----+----+----+----+----+----+----'
+     ___ ,LALT, ___, ___,___ , ___               ,___ ,CHIME, ___, ___, ___, SJPBR
+  //                  `----+----+----'        `----+----+----'
+  ),
+
+    //shifted Japanese keymap
+    [_NITR] = LAYOUT_kc(
+  //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
+     ___ , ___, ___, ___, ___, ___               , ___, ___, ___, ___, F23, F24,
+  //|----+----+----+----+----+----|              |----+----+----+----+----+----|
+      ___,COMM, AZH, AZR, AZM, AZW               , DUI, DAA, DOO,COLN, DIU, ___,
+  //|----+----+----+----+----+----|              |----+----+----+----+----+----|
+    BLGUI, AZY, AZS, AZT, AZK, AZN               ,DUNN,DANN,DONN,DINN,DENN,SLSH,
+  //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
+      ___, P  , L  ,DTSU, DWO, DEL               ,___ , DAE, DOA, DIA, DIO, ___,
+  //`----+----+----+----+----+----+----/    \----+----+----+----+----+----+----'
+     SJPBL ,___ , ___, ___,___ , ___               ,___ ,CHIME, ___, ___, ___, SJPR
+  //                  `----+----+----'        `----+----+----'
+  ),
+
+    //shifted Japanese keymap
+    [_NITB] = LAYOUT_kc(
   //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
      ___ , ___, ___, ___, ___, ___               , ___, ___, ___, ___, F23, F24,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
@@ -289,7 +324,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
      ___ , AZB, V  , P  , AZB, ___               ,___ , DAE, DOA, DIA, DIO, ___,
   //`----+----+----+----+----+----+----/    \----+----+----+----+----+----+----'
-     ___ ,LALT, ___, ___,___ , ___               ,___ ,CHIME, ___, ___, ___, ___
+     SJPBL,LALT, ___, ___,___ , ___               ,___ ,CHIME, ___, ___, ___, SJPBR
   //                  `----+----+----'        `----+----+----'
   ),
 
@@ -1159,12 +1194,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case CL_NTM:
       if (record->event.pressed) {
         // when keycode DF_RNMSH is pressed
-        layer_off(5);
-        layer_on(4);
+        layer_off(7);
+        layer_on(6);
         pre_pressed_key = keycode;
       }else{
-        layer_off(4);
-        layer_on(5);
+        layer_off(6);
+        layer_on(7);
         pre_pressed_key = keycode;
       }
       return false;
@@ -1227,17 +1262,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case CL_FN:
       if (OS_State_mode){
         if (record->event.pressed) {
+          layer_on(10);
+          pre_pressed_key = keycode;
+        }else{
+          layer_off(10);
+        }
+      }else{
+        if (record->event.pressed) {
           layer_on(8);
           pre_pressed_key = keycode;
         }else{
           layer_off(8);
-        }
-      }else{
-        if (record->event.pressed) {
-          layer_on(6);
-          pre_pressed_key = keycode;
-        }else{
-          layer_off(6);
         }
       }
       return false;
@@ -1245,17 +1280,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case CL_FS:
       if (OS_State_mode){
         if (record->event.pressed) {
+          layer_on(11);
+          pre_pressed_key = keycode;
+        }else{
+          layer_off(11);
+        }
+      }else{
+        if (record->event.pressed) {
           layer_on(9);
           pre_pressed_key = keycode;
         }else{
           layer_off(9);
-        }
-      }else{
-        if (record->event.pressed) {
-          layer_on(7);
-          pre_pressed_key = keycode;
-        }else{
-          layer_off(7);
         }
       }
       return false;
@@ -1312,7 +1347,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
       return false;
       break;
-    case KC_SJP:
+    case KC_SJPL:
+      break;
+    case KC_SJPR:
+      break;
+    case KC_SJPBL:
+      break;
+    case KC_SJPBR:
       break;
     default:
       pre_pressed_key = keycode;
