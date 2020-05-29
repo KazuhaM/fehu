@@ -77,32 +77,34 @@ enum custom_keycodes {
   //DN_WO, TSU
   DN_WO,
   DN_TSU,
-  DN_NN,
+  // DN_NN,
   
   //mark codes
   DM_BRCT,
   DM_BRCTL,
   DM_BRCTM,
-  DM_SSTT,
+  // DM_SSTT,
 
   //IME
   IM_EN,
   IM_JP,
 
   //function code
-  DF_RNMSH,
-  DF_WOXSET,
+  // DF_RNMSH,
+  // DF_WOXSET,
   DF_WOXML,
-  DF_WOXGMSC,
+  // DF_WOXGMSC,
   DF_WOXPASS,
   // DF_WOXLOCK,
-  DF_CTR2,
+  // DF_CTR2,
   
   // OS change
   OS_CMA,
   OS_CMW,
   CL_FN,
   CL_FS,
+  CL_SJPBL,
+  CL_SJPBR,
 
   //layer change codes
   CL_NTM,
@@ -137,8 +139,8 @@ enum custom_keycodes {
 #define KC_SEN LT(1,KC_SPC)
 #define KC_SJPL LT(3,KC_SPC)
 #define KC_SJPR LT(4,KC_ENT)
-#define KC_SJPBL LT(5,KC_SPC)
-#define KC_SJPBR LT(5,KC_ENT)
+#define KC_SJPBL CL_SJPBL
+#define KC_SJPBR CL_SJPBR
 #define KC_MRK TT(6)
 #define KC_NUM TT(7)
 // #define KC_FNC MO(6)
@@ -201,19 +203,19 @@ enum custom_keycodes {
 //DN_WO
 #define KC_DWO DN_WO
 #define KC_DTSU DN_TSU
-#define KC_DNN DN_NN
+// #define KC_DNN DN_NN
 
 //mark
 #define KC_DBRCT DM_BRCT
 #define KC_DBRCTL DM_BRCTL
 #define KC_DBRCTM DM_BRCTM
-#define KC_SSTT DM_SSTT
+// #define KC_SSTT DM_SSTT
 
 //function
-#define KC_DRNSH DF_RNMSH
-#define KC_WOXS DF_WOXSET
+// #define KC_DRNSH DF_RNMSH
+// #define KC_WOXS DF_WOXSET
 #define KC_WOXM DF_WOXML
-#define KC_WOXG DF_WOXGMSC
+// #define KC_WOXG DF_WOXGMSC
 #define KC_WOXP DF_WOXPASS
 // #define KC_WOXL DF_WOXLOCK
 
@@ -290,7 +292,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
      ___ ,SCLN, ___, AZJ, AZF, Q                 , ___, ___, ___, ___, ___, ___,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-     ___ , ___, AZZ, AZD, AZG, DNN               , ___, ___, ___, ___, ___, ___,
+     ___ , ___, AZZ, AZD, AZG, ___               , ___, ___, ___, ___, ___, ___,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
      ___ , AZB, V  , P  , AZB, ___               , ___, ___, ___, ___, ___, ___,
   //`----+----+----+----+----+----+----/    \----+----+----+----+----+----+----'
@@ -309,7 +311,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
       ___, P  , L  ,DTSU, DWO, DEL               ,___ , DAE, DOA, DIA, DIO, ___,
   //`----+----+----+----+----+----+----/    \----+----+----+----+----+----+----'
-     SJPBL ,___ , ___, ___,___ , ___               ,___ ,CHIME, ___, ___, ___, SJPR
+     SJPBL,___ , ___, ___,___ , ___               ,___ ,CHIME, ___, ___, ___, SJPR
   //                  `----+----+----'        `----+----+----'
   ),
 
@@ -320,11 +322,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
      ___ ,SCLN, ___, AZJ, AZF, Q                 , DUI, DAA, DOO,COLN, DIU, ___,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-     ___ , ___, AZZ, AZD, AZG, DNN               ,DUNN,DANN,DONN,DINN,DENN,SLSH,
+     ___ , ___, AZZ, AZD, AZG, ___               ,DUNN,DANN,DONN,DINN,DENN,SLSH,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
      ___ , AZB, V  , P  , AZB, ___               ,___ , DAE, DOA, DIA, DIO, ___,
   //`----+----+----+----+----+----+----/    \----+----+----+----+----+----+----'
-     SJPBL,LALT, ___, ___,___ , ___               ,___ ,CHIME, ___, ___, ___, SJPBR
+     SJPL ,LALT, ___, ___,___ , ___               ,___ ,CHIME, ___, ___, ___, SJPR
   //                  `----+----+----'        `----+----+----'
   ),
 
@@ -335,7 +337,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|-------+-----------+-----------+-----------+-----------+-----------|                           |-----------+-----------+-----------+-----------+-----------+-----------|
      KC____ , KC_LT     , KC_GT     , KC_LBRC   , KC_RBRC   , KC_AMPR                               , KC_EQL    , KC_EXLM   , KC_BSLS   , KC_PERC   , KC_MINS   , KC_LALT   ,
   //|-------+-----------+-----------+-----------+-----------+-----------|                           |-----------+-----------+-----------+-----------+-----------+-----------|
-     KC_LGUI, KC_QUOT	  , KC_DQT    , KC_LPRN   , KC_RPRN   , KC_DLR                                , KC_SSTT   , KC_QUES   , KC_AT     , KC_UNDS   , KC_PLUS   , KC_PIPE   ,
+     KC_LGUI, KC_QUOT	  , KC_DQT    , KC_LPRN   , KC_RPRN   , KC_DLR                                , KC_COLN   , KC_QUES   , KC_AT     , KC_UNDS   , KC_PLUS   , KC_PIPE   ,
   //|-------+-----------+-----------+-----------+-----------+-----------+-----------.    ,----------|-----------+-----------+-----------+-----------+-----------+-----------|
      KC_LSFT, KC_COMM   , KC_GRV    , KC_LCBR   , KC_RCBR   , KC____                                , KC____    , KC_TILD   , KC_HASH   , KC_SLSH   , KC_DOT    , KC____    ,
   //`-------+-----------+-----------+-----------+-----------+-----------+-----------/    \----------+-----------+-----------+-----------+-----------+-----------+-----------'
@@ -361,15 +363,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //function keymap for english (IME: off)
     [_FUNC] = LAYOUT(
   //,-------+-----------+-----------+-----------+-----------+-----------.                           ,-----------+-----------+-----------+-----------+-----------+-----------.
-  LCA(KC_DEL), KC_F1    , KC_CAPS   , KC_INS    , KC_PSCR   , KC_NLCK                               , KC_MUTE   , KC_VOLD   , KC_VOLU   , KC_WOXG   , KC_WOXS   ,LCA(KC_DEL),
+  LCA(KC_DEL), KC_F1    , KC_CAPS   , KC_INS    , KC_PSCR   , KC_NLCK                               , KC_MUTE   , KC_VOLD   , KC_VOLU   , KC____    , KC____    ,LCA(KC_DEL),
   //|-------+-----------+-----------+-----------+-----------+-----------|                           |-----------+-----------+-----------+-----------+-----------+-----------|
-     KC____ , C(KC_Y)   , G(KC_R)   , C(KC_R)   , C(KC_F)   , KC_DRNSH                              , KC_WOXM   , KC_HOME   , KC_UP     , KC_END    , C(KC_P)   , KC_LALT   ,
+     KC____ , C(KC_Y)   , G(KC_R)   , C(KC_R)   , C(KC_F)   , KC____                                , KC_WOXM   , KC_HOME   , KC_UP     , KC_END    , C(KC_P)   , KC_LALT   ,
   //|-------+-----------+-----------+-----------+-----------+-----------|                           |-----------+-----------+-----------+-----------+-----------+-----------|
      KC_LGUI, C(KC_A)   , C(KC_S)   , DF_PST    , A(KC_A)   , KC_WOXP                               , KC_NO     , KC_LEFT   , KC_DOWN   , KC_RGHT   , KC_NO     , KC_NO     ,
   //|-------+-----------+-----------+-----------+-----------+-----------+-----------.    ,----------|-----------+-----------+-----------+-----------+-----------+-----------|
      KC_LSFT, C(KC_Z)   , C(KC_X)   , C(KC_C)   , C(KC_V)   , KC_SPC	                              , KC____    , KC_PGUP   , KC_NO     , KC_PGDN   , KC_NO     , KC____    ,
   //`-------+-----------+-----------+-----------+-----------+-----------+-----------/    \----------+-----------+-----------+-----------+-----------+-----------+-----------'
-     KC_LALT, KC____    , KC____    , KC____    , KC____   , KC_SLEP                               , KC_WAKE   , KC____    , KC____    , KC_NO     , CL_FS      , KC_LCTL
+     KC_LALT, KC____    , KC____    , KC____    , KC____    , KC_SLEP                               , KC____    , KC____    , KC____    , KC_NO     , CL_FS      , KC_LCTL
   //                                             `----------+-----------+-----------'    `----------+-----------+-----------'
   ),
 
@@ -382,9 +384,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|-------+-----------+-----------+-----------+-----------+-----------|                           |-----------+-----------+-----------+-----------+-----------+-----------|
      KC_LGUI, KC____    , KC____    , KC_D      , KC____    , KC____                                , KC____    , KC____    , KC____    , KC____    , KC____    , KC____    ,
   //|-------+-----------+-----------+-----------+-----------+-----------+-----------.    ,----------|-----------+-----------+-----------+-----------+-----------+-----------|
-     KC_LSFT, KC____    , KC____    , KC____    , DF_CTR2   , KC____	                              , KC____    , KC____    , KC____    , KC____    , KC____    , KC____    ,
+     KC_LSFT, KC____    , KC____    , KC____    , KC____    , KC____	                              , KC____    , KC____    , KC____    , KC____    , KC____    , KC____    ,
   //`-------+-----------+-----------+-----------+-----------+-----------+-----------/    \----------+-----------+-----------+-----------+-----------+-----------+-----------'
-     KC____ , KC____    , KC____    , KC____    , KC____    , KC_PWR                                , KC____    , KC____    , KC____    , KC____    , KC____    , KC____
+     KC____ , KC____    , KC____    , KC____    , KC____    , KC____                                , KC____    , KC____    , KC____    , KC____    , KC____    , KC____
   //                                             `----------+-----------+-----------'    `----------+-----------+-----------'
   ),
 
@@ -434,7 +436,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 };
 
-int RGB_current_mode;
+// int RGB_current_mode;
 
 void persistent_default_layer_set(uint16_t default_layer) {
   eeconfig_update_default_layer(default_layer);
@@ -555,7 +557,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             pre_pressed_key = 0;
             break;
           case AZIK_N:
-            SEND_STRING("n");
+            SEND_STRING("nn");
             pre_pressed_key = 0;
             break;
           default:
@@ -579,10 +581,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
           case AZIK_Y:
             SEND_STRING("oku");
-            pre_pressed_key = 0;
-            break;
-          case AZIK_R:
-            SEND_STRING("aku");
             pre_pressed_key = 0;
             break;
           default:
@@ -651,11 +649,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             SEND_STRING("oso");
             pre_pressed_key = 0;
             break;
-          case AZIK_T:
+          case AZIK_Y:
             SEND_STRING("osi");
             pre_pressed_key = 0;
             break;
-          case AZIK_Y:
+          case AZIK_T:
             SEND_STRING("osi");
             pre_pressed_key = 0;
             break;
@@ -704,10 +702,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             SEND_STRING("ame");
             pre_pressed_key = 0;
             break;
-          case AZIK_S:
-            SEND_STRING("omo");
-            pre_pressed_key = 0;
-            break;
           case AZIK_D:
             SEND_STRING("emo");
             pre_pressed_key = 0;
@@ -728,7 +722,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             pre_pressed_key = 0;
             break;
           case AZIK_K:
-            SEND_STRING("ara");
+            SEND_STRING("ore");
             pre_pressed_key = 0;
             break;
           case AZIK_T:
@@ -752,7 +746,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             pre_pressed_key = 0;
             break;
           case AZIK_G:
-            SEND_STRING("ara");
+            SEND_STRING("oro");
             pre_pressed_key = 0;
             break;
           case AZIK_D:
@@ -761,10 +755,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
           case AZIK_Z:
             SEND_STRING("aru");
-            pre_pressed_key = 0;
-            break;
-          case AZIK_F:
-            SEND_STRING("uru");
             pre_pressed_key = 0;
             break;
           default:
@@ -833,10 +823,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case AZIK_J:
       if (record->event.pressed) {
         switch (pre_pressed_key){
-          case AZIK_F:
-            SEND_STRING("uji");
-            pre_pressed_key = 0;
-            break;
           default:
             tap_code (KC_J);
             pre_pressed_key = keycode;
@@ -1049,14 +1035,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
-    case DN_NN:
-      if (record->event.pressed) {
-        // when keycode DN_NN is pressed
-        SEND_STRING("nn");
-        pre_pressed_key = keycode;
-      }
-      return false;
-      break;
+    // case DN_NN:
+    //   if (record->event.pressed) {
+    //     // when keycode DN_NN is pressed
+    //     SEND_STRING("nn");
+    //     pre_pressed_key = keycode;
+    //   }
+    //   return false;
+    //   break;
     //macros for marks
     ///////////////////////////////////////////////// (not use)
     // case DM_BRCT:
@@ -1081,33 +1067,33 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     //   return false;
     //   break;
     //////////////////////////////////////////////////
-    case DM_SSTT:
-      if (record->event.pressed) {
-        // when keycode DM_SSTT is pressed
-        SEND_STRING("<-");
-        pre_pressed_key = keycode;
-      }
-      return false;
-      break;
+    // case DM_SSTT:
+    //   if (record->event.pressed) {
+    //     // when keycode DM_SSTT is pressed
+    //     SEND_STRING("<-");
+    //     pre_pressed_key = keycode;
+    //   }
+    //   return false;
+    //   break;
   //macros for function
-    case DF_RNMSH:
-      if (record->event.pressed) {
-        // when keycode DF_RNMSH is pressed
-        pre_pressed_key = keycode;
-        SEND_STRING(SS_LALT("ohr"));
-      }
-      return false;
-      break;
-      case DF_WOXSET:
-      if (record->event.pressed) {
-        // when keycode DF_WOXSET is pressed
-        pre_pressed_key = keycode;
-        SEND_STRING(SS_LALT("s"));
-      }else{
-        SEND_STRING(SS_TAP(X_ENTER));
-      }
-      return false;
-      break;
+    // case DF_RNMSH:
+    //   if (record->event.pressed) {
+    //     // when keycode DF_RNMSH is pressed
+    //     pre_pressed_key = keycode;
+    //     SEND_STRING(SS_LALT("ohr"));
+    //   }
+    //   return false;
+    //   break;
+    // case DF_WOXSET:
+    //   if (record->event.pressed) {
+    //     // when keycode DF_WOXSET is pressed
+    //     pre_pressed_key = keycode;
+    //     SEND_STRING(SS_LALT("s"));
+    //   }else{
+    //     SEND_STRING(SS_TAP(X_ENTER));
+    //   }
+    //   return false;
+    //   break;
     case DF_WOXML:
       if (record->event.pressed) {
         // when keycode DF_WOXMLis pressed
@@ -1118,16 +1104,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
-    case DF_WOXGMSC:
-      if (record->event.pressed) {
-        // when keycode DF_WOXGMSC is pressed
-        pre_pressed_key = keycode;
-        SEND_STRING(SS_LALT("g"));
-      }else{
-        SEND_STRING(SS_TAP(X_ENTER));
-      }
-      return false;
-      break;
+    // case DF_WOXGMSC:
+    //   if (record->event.pressed) {
+    //     // when keycode DF_WOXGMSC is pressed
+    //     pre_pressed_key = keycode;
+    //     SEND_STRING(SS_LALT("g"));
+    //   }else{
+    //     SEND_STRING(SS_TAP(X_ENTER));
+    //   }
+    //   return false;
+    //   break;
     case DF_WOXPASS:
       if (record->event.pressed) {
         // when keycode DF_WOXPASS is pressed
@@ -1191,6 +1177,44 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
+    case CL_SJPBL:
+      if (record->event.pressed) {
+        // when keycode DF_RNMSH is pressed
+        layer_on(3);
+        update_tri_layer(3, 4, 5);
+      }else{
+        layer_off(3);
+        update_tri_layer(3, 4, 5);
+      }
+      return false;
+      break;
+    case CL_SJPBR:
+      if (record->event.pressed) {
+        // when keycode DF_RNMSH is pressed
+        layer_on(4);
+        update_tri_layer(3, 4, 5);
+      }else{
+        layer_off(4);
+        update_tri_layer(3, 4, 5);
+      }
+      return false;
+      break;
+    case KC_SJPL:
+      if (record->event.pressed) {
+        // update_tri_layer(3, 4, 5);
+      }else{
+        layer_off(3);
+        update_tri_layer(3, 4, 5);
+      }
+      break;
+    case KC_SJPR:
+      if (record->event.pressed) {
+        // update_tri_layer(3, 4, 5);
+      }else{
+        layer_off(4);
+        update_tri_layer(3, 4, 5);
+      }
+      break;
     case CL_NTM:
       if (record->event.pressed) {
         // when keycode DF_RNMSH is pressed
@@ -1225,16 +1249,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
-    case DF_CTR2:
-      if (record->event.pressed) {
-        register_code (KC_LCTL);
-        unregister_code (KC_LCTL);
-        register_code (KC_LCTL);
-        unregister_code (KC_LCTL);
-        pre_pressed_key = keycode;
-      }
-      return false;
-      break;
+    // case DF_CTR2:
+    //   if (record->event.pressed) {
+    //     register_code (KC_LCTL);
+    //     unregister_code (KC_LCTL);
+    //     register_code (KC_LCTL);
+    //     unregister_code (KC_LCTL);
+    //     pre_pressed_key = keycode;
+    //   }
+    //   return false;
+    //   break;
     case OS_CMW:
       if (record->event.pressed) {
         OS_State_mode = false;
@@ -1346,14 +1370,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           layer_on(2);
         }
       return false;
-      break;
-    case KC_SJPL:
-      break;
-    case KC_SJPR:
-      break;
-    case KC_SJPBL:
-      break;
-    case KC_SJPBR:
       break;
     default:
       pre_pressed_key = keycode;
