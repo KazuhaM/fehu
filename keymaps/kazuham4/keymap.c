@@ -78,7 +78,7 @@ enum custom_keycodes {
   DN_WO,
   DN_TSU,
   // DN_NN,
-  
+
   //mark codes
   DM_BRCT,
   DM_BRCTL,
@@ -97,7 +97,7 @@ enum custom_keycodes {
   DF_WOXPASS,
   // DF_WOXLOCK,
   // DF_CTR2,
-  
+
   // OS change
   OS_CMA,
   OS_CMW,
@@ -131,7 +131,8 @@ enum custom_keycodes {
 #define _SFUNC 9
 #define _FUNCA 10
 #define _SFUNCA 11
-#define _QWERTY 12
+#define _GAME1 12
+#define _GAME2 13
 
 #define KC____ KC_TRNS
 
@@ -147,7 +148,8 @@ enum custom_keycodes {
 // #define KC_SF MO(7)
 #define KC_NTM CL_NTM
 #define KC_CFN CL_FN
-#define QWTY TO(12)
+#define GAM1 TO(12)
+#define GAM2 MO(13)
 #define KC_BLCTL LMD_LCTL
 #define KC_BLALT LMD_LALT
 #define KC_BLGUI LMD_LGUI
@@ -284,7 +286,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      SJPL, CFN, BLCTL, ___, IEN, ___               , ___, IJP, ___, ___, ___,SJPR
   //                  `----+----+----'        `----+----+----'
   ),
-  
+
   //shifted Japanese keymap
     [_NITL] = LAYOUT_kc(
   //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
@@ -378,9 +380,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //shifted function keymap for english (IME: off)
     [_SFUNC] = LAYOUT(
   //,-------+-----------+-----------+-----------+-----------+-----------.                           ,-----------+-----------+-----------+-----------+-----------+-----------.
-     KC____ , KC_1      , KC_2      , KC_3      , KC_4      , KC_5                                  , KC_6      , KC_7      , KC_8      , KC_9      , KC_0      , QWTY      ,
+     KC____ , KC_1      , KC_2      , KC_3      , KC_4      , KC_5                                  , KC_6      , KC_7      , KC_8      , KC_9      , KC_0      , KC____   ,
   //|-------+-----------+-----------+-----------+-----------+-----------|                           |-----------+-----------+-----------+-----------+-----------+-----------|
-     KC____ , C(S(KC_Z)), KC____    , KC____    , C(KC_H)   , KC____                                , KC____    , KC____    , KC____    , KC____    , KC____    , KC____    ,
+     KC____ , C(S(KC_Z)), KC____    , KC____    , C(KC_H)   , KC____                                , KC____    , KC____    , KC____    , KC____    , KC____    , GAM1    ,
   //|-------+-----------+-----------+-----------+-----------+-----------|                           |-----------+-----------+-----------+-----------+-----------+-----------|
      KC_LGUI, KC____    , KC____    , KC_D      , KC____    , KC____                                , KC____    , KC____    , KC____    , KC____    , KC____    , KC____    ,
   //|-------+-----------+-----------+-----------+-----------+-----------+-----------.    ,----------|-----------+-----------+-----------+-----------+-----------+-----------|
@@ -388,21 +390,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //`-------+-----------+-----------+-----------+-----------+-----------+-----------/    \----------+-----------+-----------+-----------+-----------+-----------+-----------'
      KC____ , KC____    , KC____    , KC____    , KC____    , KC____                                , KC____    , KC____    , KC____    , KC____    , KC____    , KC____
   //                                             `----------+-----------+-----------'    `----------+-----------+-----------'
-  ),
-
-    //shifted function keymap for english (IME: off)
-    [_QWERTY] = LAYOUT(
-  //,-------+--------+--------+--------+--------+--------.                      ,---------+---------+---------+---------+---------+--------.
-     KC____ , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6                         , KC_F7   , KC_F8   , KC_F9   , KC_F10  , KC_F11  , KC_F12 ,
-  //|-------+--------+--------+--------+--------+--------|                      |---------+---------+---------+---------+---------+--------|
-     KC____ , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T                          , KC_Y    , KC_U    , KC_I    , KC_O    , KC_P    , KC_DEL,
-  //|-------+--------+--------+--------+--------+--------|                      |---------+---------+---------+---------+---------+--------|
-     KC_LGUI, KC_A   , KC_S   , KC_D   , KC_F   , KC_G                          , KC_H    , KC_J    , KC_K    , KC_L    , KC_SCLN , KC_BSPC,
-  //|-------+--------+--------+--------+--------+--------|                      |--------+---------+---------+---------+---------+--------|
-     KC_LSFT, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B                          , KC_N    , KC_M    , KC_COMM , KC_DOT  , KC_SLSH , KC____ ,
-  //`-------+--------+--------+--------+--------+--------+--------/    \--------+---------+---------+---------+---------+---------+--------'
-     KC_SEN , CL_FN  , KC_LCTL, OS_CMW , KC_IEN , KC_CAPS              , KC_NLCK, KC_IJP  , OS_CMA  , KC_MRK  , KC_NUM  , KC_ENT
-  //                                    `-------+--------+--------'    `--------+---------+--------'
   ),
 
     //function keymap for android
@@ -434,6 +421,36 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      KC____ , KC____    , KC____    , KC____    , S(KC_SPC) , KC_PWR                               , KC____    , KC_LANG5   , KC____    , KC____    , KC____    , KC____
   //                                             `----------+-----------+-----------'    `----------+-----------+-----------'
   ),
+
+  //shifted function keymap for english (IME: off)
+    [_GAME1] = LAYOUT(
+  //,-------+--------+--------+--------+--------+--------.                      ,---------+---------+---------+---------+---------+--------.
+     KC_ESC , KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5                         , KC_F6   , KC_F7   , KC_F8   , KC_F9   , KC_F10  , KC_PSCR,
+  //|-------+--------+--------+--------+--------+--------|                      |---------+---------+---------+---------+---------+--------|
+     KC_TAB , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T                          , KC_Y    , KC_U    , KC_I    , KC_O    , KC_P    , KC_DEL ,
+  //|-------+--------+--------+--------+--------+--------|                      |---------+---------+---------+---------+---------+--------|
+     KC_NO  , KC_A   , KC_S   , KC_D   , KC_F   , KC_G                          , KC_H    , KC_J    , KC_K    , KC_L    , KC_SCLN , KC_BSPC,
+  //|-------+--------+--------+--------+--------+--------|                      |--------+---------+---------+---------+---------+--------|
+     KC_LALT, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B                          , KC_N    , KC_M    , KC_COMM , KC_DOT  , KC_SLSH , KC_ENT ,
+  //`-------+--------+--------+--------+--------+--------+--------/    \--------+---------+---------+---------+---------+---------+--------'
+     KC_SPC , KC_F  , KC_LSFT, KC_LCTL , KC_IEN , KC_CAPS                       , KC_NLCK , KC_IJP  , KC_NO   , KC_NO   , GAM2    , KC_ENT
+  //                                    `-------+--------+--------'    `--------+---------+--------'
+  ),
+
+  //shifted function keymap for english (IME: off)
+    [_GAME2] = LAYOUT(
+  //,-------+--------+--------+--------+--------+--------.                      ,---------+---------+---------+---------+---------+--------.
+     KC____ , KC____ , KC____ , KC____ , KC____ , KC____                        , KC____  , KC____  , KC____  , KC____  , KC_F11  , KC_F12 ,
+  //|-------+--------+--------+--------+--------+--------|                      |---------+---------+---------+---------+---------+--------|
+     KC____ , KC____ , KC____ , KC____ , KC____ , KC____                        , KC____  , KC_7    , KC_8    , KC_9    , KC____  , KC____ ,
+  //|-------+--------+--------+--------+--------+--------|                      |---------+---------+---------+---------+---------+--------|
+     KC____ , KC____ , KC____ , KC____ , KC____ , KC____                        , KC_0    , KC_4    , KC_5    , KC_6    , KC____  , KC____ ,
+  //|-------+--------+--------+--------+--------+--------|                      |---------+---------+---------+---------+---------+--------|
+     KC____ , KC____ , KC____ , KC____ , KC____ , KC____                        , KC____  , KC_1    , KC_2    , KC_3    , KC____  , KC____ ,
+  //`-------+--------+--------+--------+--------+--------+--------/    \--------+---------+---------+---------+---------+---------+--------'
+     KC____ , KC____  , KC____, KC____ , KC____ , KC____                        , KC____  , KC____  , KC____  , KC____  , KC____  , KC____
+  //                                    `-------+--------+--------'    `--------+---------+--------'
+  ),
 };
 
 // int RGB_current_mode;
@@ -446,7 +463,7 @@ void persistent_default_layer_set(uint16_t default_layer) {
 // dening to change IME when already the layer is or
 void IME_change_resist(uint8_t layer1) {
   if (IS_LAYER_ON(layer1)){
-    
+
   } else {
     register_code(KC_LALT);
     tap_code(KC_GRAVE);
@@ -557,7 +574,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             pre_pressed_key = 0;
             break;
           case AZIK_N:
-            SEND_STRING("nn");
+            SEND_STRING("n");
             pre_pressed_key = 0;
             break;
           default:
@@ -1347,7 +1364,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           pre_pressed_key = keycode;
         }else{
           unregister_code (KC_LALT);
-          
+
           persistent_default_layer_set(1UL<< 2);
           layer_clear();
           layer_on(2);
@@ -1364,7 +1381,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           pre_pressed_key = keycode;
         }else{
           unregister_code (KC_LGUI);
-          
+
           persistent_default_layer_set(1UL<< 2);
           layer_clear();
           layer_on(2);
